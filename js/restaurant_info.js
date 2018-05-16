@@ -62,7 +62,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   /*Here i'm getting the number of the restaurant from the source,
   so to be able to put a specific text as an alt attribute
   */
-  let res = image.src.substr(26, 26);
+  let numPosition = image.src.length - 5;
+  let res = image.src.substr(numPosition);
   let restNumber = res.slice(0, -4);
   let restName;
 

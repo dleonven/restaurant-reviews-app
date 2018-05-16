@@ -59,6 +59,39 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
+  /*Here i'm getting the number of the restaurant from the source,
+  so to be able to put a specific text as an alt attribute
+  */
+  let res = image.src.substr(26, 26);
+  let restNumber = res.slice(0, -4);
+  let restName;
+
+
+  if(restNumber=="1"){
+    restName = "MISSION CHINESE FOOD Restaurant";
+  } else if(restNumber=="2"){
+    restName = "EMILY Restaurant";
+  } else if(restNumber=="3"){
+    restName = "KANG HO DONG BAEKJEONG Restaurant";
+  } else if(restNumber=="4"){
+    restName = "KATZ'S DELICATESSEN Restaurant";
+  } else if(restNumber=="5"){
+    restName = "ROBERTA'S PIZZA Restaurant";
+  } else if(restNumber=="6"){
+    restName = "HOMETOWN BBQ Restaurant";
+  } else if(restNumber=="7"){
+    restName = "SUPERIORITY BURGER Restaurant";
+  } else if(restNumber=="8"){
+    restName = "THE DUTCH Restaurant";
+  } else if(restNumber=="9"){
+    restName = "MU RAMEN Restaurant";
+  } else if(restNumber=="10"){
+    restName = "CASA ENRIQUE Restaurant";
+  }
+
+  image.alt = "image from "+restName;
+  image.title = restName;
+
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 

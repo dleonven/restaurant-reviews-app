@@ -4,6 +4,26 @@ let restaurants,
 var map
 var markers = []
 
+
+/*
+  For the Service Worker, I helped myself with:
+  https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
+  and with the Udacity classes.
+*/
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+  .then(function(reg) {
+    // registration worked
+    console.log('Registration succeeded. Scope is ' + reg.scope);
+  }).catch(function(error) {
+    // registration failed
+    console.log('Registration failed with ' + error);
+  });
+}
+
+
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -137,10 +157,43 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
-
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+
+  /*Here i'm getting the number of the restaurant from the source,
+  so to be able to put a specific text as an alt attribute
+  */
+  let res = image.src.substr(26, 26);
+  let restNumber = res.slice(0, -4);
+  let restName;
+
+
+  if(restNumber=="1"){
+    restName = "MISSION CHINESE FOOD Restaurant";
+  } else if(restNumber=="2"){
+    restName = "EMILY Restaurant";
+  } else if(restNumber=="3"){
+    restName = "KANG HO DONG BAEKJEONG Restaurant";
+  } else if(restNumber=="4"){
+    restName = "KATZ'S DELICATESSEN Restaurant";
+  } else if(restNumber=="5"){
+    restName = "ROBERTA'S PIZZA Restaurant";
+  } else if(restNumber=="6"){
+    restName = "HOMETOWN BBQ Restaurant";
+  } else if(restNumber=="7"){
+    restName = "SUPERIORITY BURGER Restaurant";
+  } else if(restNumber=="8"){
+    restName = "THE DUTCH Restaurant";
+  } else if(restNumber=="9"){
+    restName = "MU RAMEN Restaurant";
+  } else if(restNumber=="10"){
+    restName = "CASA ENRIQUE Restaurant";
+  }
+
+  image.alt = "image from "+restName;
+  image.title = restName;
+
   li.append(image);
 
   const name = document.createElement('h1');

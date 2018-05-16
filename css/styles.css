@@ -7,6 +7,9 @@ body,td,th,p{
 	color: #333;
 	line-height: 1.5;
 }
+
+/*Added the grid layout, with fixed heights for the header and footer
+and 100% for the maincontent*/
 body {
 	background-color: #fdfdfd;
 	margin: 0;
@@ -143,13 +146,16 @@ nav h1 a {
   width: 200px;
 }
 
-/*Media querie to make the selects fit right when viewport is reduced*/
+/*Media querie to make the home selects fit right when viewport is reduced*/
 @media screen and (max-width: 445px){
 	.filter-options select {   width: 40%; }
 }
 
 
 /* ====================== Restaurant Listing ====================== */
+
+/*Added display flex and wrap, to give responsiveness to the list
+for different vp sizes*/
 #restaurants-list {
   background-color: #f3f3f3;
   list-style: outside none none;
@@ -209,11 +215,17 @@ nav h1 a {
 
 /* ====================== Restaurant Details ====================== */
 
+/*
+- Grid based layout to the Restaurant Details view
+- Fixed sized to header and footer and 100% of the rest to the maincontent
+- 3 rows and 1 column
+*/
 .inside {
   display: grid;
   grid-template-rows: 131px 100% 70px;
 }
 
+/*Header goes from row 1 to 2*/
 .inside header {
 
   position: static;
@@ -222,22 +234,21 @@ nav h1 a {
 
   grid-row-start: 1;
   grid-row-end: 2;
-
-  grid-column-start: 1;
-  grid-column-end: 3;
-
 }
 
-/* grid with #map-container and #restaurant-container as a child*/
+
 .inside #maincontent {
   position: static;
 
+  /*maincontent goes from row 2 to 3*/
   grid-row-start: 2;
   grid-row-end: 3;
 
   width: 100%;
-  display: grid;
 
+  /*Grid with #restaurant-container, #map-container and #restaurant-container
+  as a child*/
+  display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 10fr 15fr;
 }
@@ -245,6 +256,8 @@ nav h1 a {
 .inside #map-container {
   position: static;
 
+  /*the map-container takes column 2 (line 2 to 3)
+  and row 1 and 2 (line 1 to 3)*/
   grid-column-start: 2;
   grid-column-end: 3;
 
@@ -253,18 +266,21 @@ nav h1 a {
 
   background: blue none repeat scroll 0 0;
 
+  /*This negative margin helped to eat the blank space that the Breadcrumb
+  was leaving (it makes the map-container go out of his grid space)*/
   margin-top: -51px;
 }
 
 .inside #restaurant-container {
+
+  /*the restaurant-container takes column 1 (line 1 to 2)
+  and row 1 (line 1 to 2)*/
   grid-column-start: 1;
   grid-column-end: 2;
 
   grid-row-start: 1;
   grid-row-end: 2;
 }
-
-
 
 #restaurant-container, #reviews-container {
   border-bottom: 1px solid #d9d9d9;
@@ -336,43 +352,53 @@ nav h1 a {
   margin: 0 0 10px;
 }
 
-/**/
+/*Style for the reviewer name*/
 #reviews-list li p:nth-child(1) {
   background-color: #333;
   color: white;
-  position: relative;
-  top: 0px;
+  position: static;
   left: auto;
   height: 40px;
+
+  /*Negative margins to make the color to take all the lane*/
   margin-left: -20px;
   margin-right: -20px;
+
+  /*To align the unaligned text due to the negative margin*/
   text-indent: 20px;
+
+  /*To make some space between the top and the name*/
   line-height: 35px;
 }
 
+/*Style for the date*/
 #reviews-list li p:nth-child(2) {
   background-color: #333;
   color: #ddd;
   position: absolute;
+
+  /*top: 0 to align it in the first line with the name of the reviewer*/
   top: 0px;
+
   right: 20px;
   height: 40px;
   line-height: 35px;
   ;
 }
 
+/*Style for the review rating*/
 #reviews-list li p:nth-child(3) {
   background-color: orange;
   color: white;
   width: 80px;
   height: 30px;
-  position: relative;
-  top: 0px;
+  position: static;
   border-radius: 5px;
   text-align: center;
   line-height: 30px;
 }
 
+/*Style for the review itself*/
 #reviews-list li p:nth-child(4) {
   color: #708090;
   position: relative;
@@ -393,11 +419,16 @@ nav h1 a {
 
 .inside #footer {
 
+  /*Footer takes row 3 (line 3 to 4)*/
   grid-row-start: 3;
   grid-row-end: 4;
 
 }
 
+/*
+- Breakpoint at 800px
+- Changes the maincontent grid to one column and three rows
+(map, restaurant and reviews)*/
 @media screen and (max-width: 800px) {
   #breadcrumb {
     width: 100%;

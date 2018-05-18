@@ -10,7 +10,7 @@ var markers = []
   https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
   and with the Udacity classes.
 */
-
+/*
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
   .then(function(reg) {
@@ -21,7 +21,7 @@ if ('serviceWorker' in navigator) {
     console.log('Registration failed with ' + error);
   });
 }
-
+*/
 
 
 /**
@@ -152,7 +152,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
   addMarkersToMap();
 }
 
-/**
+/*
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
@@ -161,45 +161,12 @@ createRestaurantHTML = (restaurant) => {
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
-  /*Here i'm getting the number of the restaurant from the source,
-  so to be able to put a specific text as an alt attribute
-  */
-  let numPosition = image.src.length - 5;
-  let res = image.src.substr(numPosition);
-  let restNumber = res.slice(0, -4);
-  let restName;
-
-
-
-
-  if(restNumber=="1"){
-    restName = "MISSION CHINESE FOOD Restaurant";
-  } else if(restNumber=="2"){
-    restName = "EMILY Restaurant";
-  } else if(restNumber=="3"){
-    restName = "KANG HO DONG BAEKJEONG Restaurant";
-  } else if(restNumber=="4"){
-    restName = "KATZ'S DELICATESSEN Restaurant";
-  } else if(restNumber=="5"){
-    restName = "ROBERTA'S PIZZA Restaurant";
-  } else if(restNumber=="6"){
-    restName = "HOMETOWN BBQ Restaurant";
-  } else if(restNumber=="7"){
-    restName = "SUPERIORITY BURGER Restaurant";
-  } else if(restNumber=="8"){
-    restName = "THE DUTCH Restaurant";
-  } else if(restNumber=="9"){
-    restName = "MU RAMEN Restaurant";
-  } else if(restNumber=="10"){
-    restName = "CASA ENRIQUE Restaurant";
-  }
-
-  image.alt = "image from "+restName;
-  image.title = restName;
-
+  //Alt and title for the image
+  image.alt = `Image of ${restaurant.name} restaurant`;
+  image.title = restaurant.name;
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -215,8 +182,8 @@ createRestaurantHTML = (restaurant) => {
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
 
-  //add title to link so the screen reader can specify the restaurant
-  more.title = restName+" details";
+  //Add title to link so the screen reader can specify the restaurant
+  more.title = `${restaurant.name} details`;
   li.append(more)
 
   return li

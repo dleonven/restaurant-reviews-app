@@ -10,7 +10,7 @@ var markers = []
   https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
   and with the Udacity classes.
 */
-
+/*
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
   .then(function(reg) {
@@ -21,7 +21,7 @@ if ('serviceWorker' in navigator) {
     console.log('Registration failed with ' + error);
   });
 }
-
+*/
 
 
 /**
@@ -214,6 +214,9 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  
+  //add title to link so the screen reader can specify the restaurant
+  more.title = restName+" details";
   li.append(more)
 
   return li

@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0 0 20px;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, #top, section {
 	display: block;
 }
 #maincontent {
@@ -64,23 +64,32 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 
 /* ====================== Navigation ====================== */
-nav {
+#top {
   width: 100%;
   height: 80px;
   background-color: #252831;
   text-align:center;
   line-height: 70px;
 }
-nav h1 {
+#top h1 {
   margin: auto;
 }
-nav h1 a {
+#top h1 a {
   color: #fff;
   font-size: 14pt;
   font-weight: 200;
   letter-spacing: 10px;
   text-transform: uppercase;
 }
+
+/*Breakpoint for the header's first link*/
+@media screen and (max-width: 430px) {
+  #top h1 a {
+    font-size: 12pt;
+    letter-spacing: 5px;
+  }
+}
+
 #breadcrumb {
     padding: 10px 40px 16px;
     list-style: none;
@@ -431,7 +440,7 @@ for different vp sizes*/
 (map, restaurant and reviews)*/
 @media screen and (max-width: 800px) {
   #breadcrumb {
-    width: 100%;
+    width: 100vw;
   }
 
   .inside #maincontent {

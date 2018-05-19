@@ -168,12 +168,14 @@ for different vp sizes*/
 #restaurants-list {
   background-color: #f3f3f3;
   list-style: outside none none;
-  margin: 0;
   padding: 30px 0px 60px;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+
+  /*To align center at the X axis (for display: flex)*/
+  justify-content: center;
 }
 #restaurants-list li {
   background-color: #fff;
@@ -188,7 +190,7 @@ for different vp sizes*/
 #restaurants-list .restaurant-img {
   background-color: #ccc;
   display: block;
-  margin: 10px;
+  margin-top: 10px;
   max-width: 100%;
   min-height: 248px;
   min-width: 100%;

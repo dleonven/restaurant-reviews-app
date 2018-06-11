@@ -16,7 +16,7 @@ class DBHelper {
   */
 
   static get DATABASE_URL() {
-    return `https://dleonven.github.io/restaurant-reviews-app/data/restaurants.json`;
+    return `https://github.com/dleonven/restaurant-reviews-app/blob/master/data/restaurants.json`;
   }
 
   /**
